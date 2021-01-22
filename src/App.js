@@ -16,30 +16,25 @@ class FortTable extends React.Component {
                   mapUrl: '' }
   }
   async getBrad(){
-    let res = await fetch(`${base}DampClamz`, { mode: 'cors',
-                                                  headers:{'Access-Control-Allow-Origin': 'https://fortniteberries.bradart.repl.co'} });
+    let res = await fetch(`${base}DampClamz`);
     let json = await res.json();
     await this.setState({ brad: json.data.stats.all.overall })
     console.log(this.state.brad)
   }
   async getEhren(){
-    let res = await fetch(`${base}theehreng`, { mode: 'cors',
-                                                  headers:{'Access-Control-Allow-Origin': 'https://fortniteberries.bradart.repl.co'} });
+    let res = await fetch(`${base}theehreng`);
     let json = await res.json();
     await this.setState({ ehren: json.data.stats.all.overall })
     console.log(this.state.ehren)
   }
   async getCam(){
-    let res = await fetch(`${base}thecambulance14`, { mode: 'cors',
-                                                  headers:{'Access-Control-Allow-Origin': 'https://fortniteberries.bradart.repl.co'} });
+    let res = await fetch(`${base}thecambulance14`);
     let json = await res.json();
     await this.setState({ cam: json.data.stats.all.overall })
     console.log(this.state.cam)
   }
   async getMap(){
-    const response = await fetch('https://fortnite-api.com/v1/map', {
-                                                  mode: 'cors',
-                                                  headers:{'Access-Control-Allow-Origin': 'https://fortniteberries.bradart.repl.co'} });
+    const response = await fetch('https://fortnite-api.com/v1/map');
     const json = await response.json();
     this.setState({ mapUrl: json.data.images.pois });
   }
