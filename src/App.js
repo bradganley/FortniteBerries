@@ -108,7 +108,7 @@ class FortTable extends React.Component {
             </tr>
           </tbody>
         </Table>
-        <Image src={this.state.mapUrl} roundedCircle />
+        <Image src={this.state.mapUrl} roundedCircle fluid />
         
         </Container>
     )
