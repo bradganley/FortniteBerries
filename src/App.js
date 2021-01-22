@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
 const base = 'https://fortnite-api.com/v1/stats/br/v2?name=';
 
@@ -11,7 +12,8 @@ class FortTable extends React.Component {
     this.state = { updating: false,
                   brad: {},
                   ehren: {},
-                  cam: {} }
+                  cam: {},
+                  mapUrl: '' }
   }
   async getBrad(){
     let res = await fetch(`${base}DampClamz`, { mode: 'cors',
@@ -34,21 +36,30 @@ class FortTable extends React.Component {
     await this.setState({ cam: json.data.stats.all.overall })
     console.log(this.state.cam)
   }
+  async getMap(){
+    const response = await fetch('https://fortnite-api.com/v1/map', {
+                                                  mode: 'cors',
+                                                  headers:{'Access-Control-Allow-Origin': 'https://fortniteberries.bradart.repl.co'} });
+    const json = await response.json();
+    this.setState({ mapUrl: json.data.images.pois });
+  }
   async updateData(){
     await this.getBrad();
     await this.getEhren();
     await this.getCam();
   }
   async componentDidMount(){
-    await this.getBrad();
-    await this.getEhren();
-    await this.getCam();
+    this.getBrad();
+    this.getEhren();
+    this.getCam();
+    this.getMap();
   }
 
   render() {
     let { brad, ehren, cam } = this.state
     return (      
         <Container>
+        <Button variant="light" onClick={ () => { this.updateData() } }> Update Data </Button>
         <Table variant="dark" striped bordered hover size="sm">
           <thead>
             <tr>
@@ -97,6 +108,7 @@ class FortTable extends React.Component {
             </tr>
           </tbody>
         </Table>
+        <Image src={this.state.mapUrl} roundedCircle />
         
         </Container>
     )
@@ -106,7 +118,6 @@ class App extends React.Component {
   render(){
   return (
     <div className="App">
-      <Button variant="light" onClick={ () => { this.updateData() } }> Update Data </Button>
       <FortTable />
     </div>
   );
