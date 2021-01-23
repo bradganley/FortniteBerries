@@ -89,6 +89,13 @@ class FortTable extends React.Component {
               <td>{adi.kills}</td>
             </tr>
             <tr>
+              <th>Deaths</th>
+              <td>{brad.deaths}</td>
+              <td>{ehren.deaths}</td>
+              <td>{cam.deaths}</td>
+              <td>{adi.deaths}</td>
+            </tr>
+            <tr>
               <th>Top 10's</th>
               <td>{brad.top10}</td>
               <td>{ehren.top10}</td>
