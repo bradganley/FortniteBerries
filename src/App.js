@@ -13,6 +13,7 @@ class FortTable extends React.Component {
                   brad: {},
                   ehren: {},
                   cam: {},
+                  adi: {},
                   mapUrl: '' }
   }
   async getBrad(){
@@ -26,6 +27,12 @@ class FortTable extends React.Component {
     let json = await res.json();
     await this.setState({ ehren: json.data.stats.all.overall })
     console.log(this.state.ehren)
+  }
+  async getAdi(){
+    let res = await fetch(`${base}xxgamermaryxx`);
+    let json = await res.json();
+    await this.setState({ adi: json.data.stats.all.overall })
+    console.log(this.state.cam)
   }
   async getCam(){
     let res = await fetch(`${base}thecambulance14`);
@@ -48,10 +55,11 @@ class FortTable extends React.Component {
     await this.getBrad();
     await this.getEhren();
     await this.getCam();
+    await this.getAdi();
   }
 
   render() {
-    let { brad, ehren, cam } = this.state
+    let { brad, ehren, cam, adi } = this.state
     return (      
         <Container>
         <Button variant="light" onClick={ () => { this.updateData() } }> Update Data </Button>
@@ -62,6 +70,7 @@ class FortTable extends React.Component {
               <th>Brad</th>
               <th>Ehren</th>
               <th>Cameron</th>
+              <th>Adi</th>
             </tr>
           </thead>
           <tbody>
@@ -70,36 +79,42 @@ class FortTable extends React.Component {
               <td>{brad.wins}</td>
               <td>{ehren.wins}</td>
               <td>{cam.wins}</td>
+              <td>{adi.wins}</td>
             </tr>
             <tr>
               <th>Kills</th>
               <td>{brad.kills}</td>
               <td>{ehren.kills}</td>
               <td>{cam.kills}</td>
+              <td>{adi.kills}</td>
             </tr>
             <tr>
               <th>Top 10's</th>
               <td>{brad.top10}</td>
               <td>{ehren.top10}</td>
               <td>{cam.top10}</td>
+              <td>{adi.top10}</td>
             </tr>
             <tr>
               <th>Win Rate</th>
               <td>{brad.winRate}</td>
               <td>{ehren.winRate}</td>
               <td>{cam.winRate}</td>
+              <td>{adi.winRate}</td>
             </tr>
             <tr>
               <th>Matches Played</th>
               <td>{brad.matches}</td>
               <td>{ehren.matches}</td>
               <td>{cam.matches}</td>
+              <td>{adi.matches}</td>
             </tr>
             <tr>
               <th>Minutes Played</th>
               <td>{brad.minutesPlayed}</td>
               <td>{ehren.minutesPlayed}</td>
               <td>{cam.minutesPlayed}</td>
+              <td>{adi.minutesPlayed}</td>
             </tr>
           </tbody>
         </Table>
