@@ -110,10 +110,24 @@ class FortTable extends React.Component {
   }
 }
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { formVal: 'dampclamz'}
+  }
+  handleChange(event){
+    this.setState({formVal: event.target.value});
+  }
+  handleSubmit(event){
+    alert("This isn't a feature yet");
+  }
   render(){
   return (
     <div className="App">
       <FortTable />
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" value={this.state.formVal} onChange={event => this.handleChange(event)}/>
+        <input type="submit" value="Submit"/>
+      </form>
     </div>
   );
   }
