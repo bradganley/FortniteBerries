@@ -69,7 +69,7 @@ class FortTable extends React.Component {
               <th>Stat</th>
               <th>Brad</th>
               <th>Ehren</th>
-              <th>Cameron</th>
+              <th>Cam</th>
               <th>Adi</th>
             </tr>
           </thead>
