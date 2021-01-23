@@ -49,6 +49,7 @@ class FortTable extends React.Component {
     await this.getBrad();
     await this.getEhren();
     await this.getCam();
+    await this.getAdi();
   }
   async componentDidMount(){
     await this.getMap();
