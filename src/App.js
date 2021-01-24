@@ -1,10 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
+import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
 const base = 'https://fortnite-api.com/v1/stats/br/v2?name=';
+
+function ModalBoy() {
+  const [show, setShow] = useState(false);
+  const [changes, handleChange] = useState('dampclamz');
+  const [customStats, updateStats] = useState({});
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => { 
+    lookItUp();
+    setShow(true);
+  }
+  const lookItUp = async () => {
+    updateStats({});
+    let res = await fetch(`${base}${changes}`);
+    let json = await res.json();
+    updateStats(json.data.stats.all.overall)
+    console.log(json)
+  }
+  return ( 
+    <>
+      <input type="text" value={changes} onChange={event => handleChange(event.target.value)}/>
+      <Button variant="secondary" onClick={handleShow}>
+        Look up your own stats
+      </Button>
+      <Modal show={show} onHide={handleClose} centered="true" size="sm">
+        <Modal.Header closeButton="true">
+          <Modal.Title>A Statistic</Modal.Title>
+        </Modal.Header>
+          <Modal.Body>
+            <Container>
+            <Table variant="light" striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>Stat</th>
+              <th>{changes}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Wins</th>
+              <td>{customStats.wins}</td>
+            </tr>
+            <tr>
+              <th>Kills</th>
+              <td>{customStats.kills}</td>
+            </tr>
+            <tr>
+              <th>Deaths</th>
+              <td>{customStats.deaths}</td>
+            </tr>
+            <tr>
+              <th>Top 10s</th>
+              <td>{customStats.top10}</td>
+            </tr>
+            <tr>
+              <th>Win Rate</th>
+              <td>{customStats.winRate}</td>
+            </tr>
+            <tr>
+              <th>Matches Played</th>
+              <td>{customStats.matches}</td>
+            </tr>
+            <tr>
+              <th>Minutes Playes</th>
+              <td>{customStats.minutesPlayed}</td>
+            </tr>
+          </tbody>
+          </Table>
+            </Container>
+          </Modal.Body>
+      </Modal>
+    </>
+  );
+}
+
 
 class FortTable extends React.Component {
   constructor(props){
@@ -147,10 +223,7 @@ class App extends React.Component {
   return (
     <div className="App">
       <FortTable />
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" value={this.state.formVal} onChange={event => this.handleChange(event)}/>
-        <input type="submit" value="Submit"/>
-      </form>
+      <ModalBoy />
     </div>
   );
   }
