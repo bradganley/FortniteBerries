@@ -145,7 +145,7 @@ class FortTable extends React.Component {
   }
 
   render() {
-    let { brad, ehren, cam, adi } = this.state
+    let { brad, ehren, cam, adi, nicci } = this.state
     return (      
         <Container>
         <Button variant="light" onClick={ () => { this.updateData() } }> Update Data </Button>
@@ -154,6 +154,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Stat</th>
               <th>Brad</th>
+              <th>Nicci</th>
               <th>Ehren</th>
               <th>Cam</th>
               <th>Adi</th>
