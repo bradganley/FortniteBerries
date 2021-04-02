@@ -94,10 +94,10 @@ class FortTable extends React.Component {
                   mapUrl: '' }
   }
   async getNicci(){
-    let res = await fetch(`${base}DampClamz`);
+    let res = await fetch(`${base}ThicciNemesis`);
     let json = await res.json();
-    await this.setState({ brad: json.data.stats.all.overall })
-    console.log(this.state.brad)
+    await this.setState({ nicci: json.data.stats.all.overall })
+    console.log(this.state.nicci)
   }
   async getBrad(){
     let res = await fetch(`${base}DampClamz`);
@@ -163,6 +163,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Wins</th>
               <td>{brad.wins}</td>
+              <td>{nicci.wins}</td>
               <td>{ehren.wins}</td>
               <td>{cam.wins}</td>
               <td>{adi.wins}</td>
@@ -170,6 +171,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Kills</th>
               <td>{brad.kills}</td>
+              <td>{nicci.kills}</td>
               <td>{ehren.kills}</td>
               <td>{cam.kills}</td>
               <td>{adi.kills}</td>
@@ -177,6 +179,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Deaths</th>
               <td>{brad.deaths}</td>
+              <td>{nicci.deaths}</td>
               <td>{ehren.deaths}</td>
               <td>{cam.deaths}</td>
               <td>{adi.deaths}</td>
@@ -184,6 +187,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Top 10's</th>
               <td>{brad.top10}</td>
+              <td>{nicci.top10}</td>
               <td>{ehren.top10}</td>
               <td>{cam.top10}</td>
               <td>{adi.top10}</td>
@@ -191,6 +195,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Win Rate</th>
               <td>{brad.winRate}</td>
+              <td>{nicci.winRate}</td>
               <td>{ehren.winRate}</td>
               <td>{cam.winRate}</td>
               <td>{adi.winRate}</td>
@@ -198,6 +203,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Matches Played</th>
               <td>{brad.matches}</td>
+              <td>{nicci.matches}</td>
               <td>{ehren.matches}</td>
               <td>{cam.matches}</td>
               <td>{adi.matches}</td>
@@ -205,6 +211,7 @@ class FortTable extends React.Component {
             <tr>
               <th>Minutes Played</th>
               <td>{brad.minutesPlayed}</td>
+              <td>{nicci.minutesPlayed}</td>
               <td>{ehren.minutesPlayed}</td>
               <td>{cam.minutesPlayed}</td>
               <td>{adi.minutesPlayed}</td>
