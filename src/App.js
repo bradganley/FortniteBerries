@@ -69,7 +69,7 @@ function ModalBoy() {
               <td>{customStats.matches}</td>
             </tr>
             <tr>
-              <th>Minutes Playes</th>
+              <th>Minutes Played</th>
               <td>{customStats.minutesPlayed}</td>
             </tr>
           </tbody>
@@ -90,7 +90,14 @@ class FortTable extends React.Component {
                   ehren: {},
                   cam: {},
                   adi: {},
+                  nicci: {},
                   mapUrl: '' }
+  }
+  async getNicci(){
+    let res = await fetch(`${base}DampClamz`);
+    let json = await res.json();
+    await this.setState({ brad: json.data.stats.all.overall })
+    console.log(this.state.brad)
   }
   async getBrad(){
     let res = await fetch(`${base}DampClamz`);
@@ -119,10 +126,11 @@ class FortTable extends React.Component {
   async getMap(){
     const response = await fetch('https://fortnite-api.com/v1/map');
     const json = await response.json();
-    this.setState({ mapUrl: json.data.images.pois });
+    this.setState({ mapUrl: json.data.images.blank });
   }
   async updateData(){
     await this.getBrad();
+    await this.getNicci();
     await this.getEhren();
     await this.getCam();
     await this.getAdi();
@@ -130,6 +138,7 @@ class FortTable extends React.Component {
   async componentDidMount(){
     await this.getMap();
     await this.getBrad();
+    await this.getNicci();
     await this.getEhren();
     await this.getCam();
     await this.getAdi();
